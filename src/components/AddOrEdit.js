@@ -37,7 +37,7 @@ function useMode() {
         if (routeMatch?.isExact) {
             mode.current = EDIT;  
         }
-    }, [routeMatch?.url]);
+    }, [routeMatch?.isExact]);
 
     return [mode.current, isEditMode];
 }
