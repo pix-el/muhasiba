@@ -4,6 +4,10 @@ export const reflectionSlice = createSlice({
     name: 'reflections',
     initialState: localStorage.getItem('reflections') ? JSON.parse(localStorage.getItem('reflections')) : [],
     reducers: {
+        loadReflections: (state, action) => {
+            state = action.payload;
+            localStorage.setItem('reflections', JSON.stringify(state));
+        },
         addReflection: (state, action) => {
             const id = `uniq${state.length}`;
             state.push({
@@ -32,6 +36,6 @@ export const reflectionSlice = createSlice({
     }
 });
 
-export const { addReflection, editReflection, deleteReflection } = reflectionSlice.actions;
+export const { loadReflections, addReflection, editReflection, deleteReflection } = reflectionSlice.actions;
 
 export default reflectionSlice.reducer;
