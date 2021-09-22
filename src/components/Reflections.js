@@ -6,9 +6,7 @@ import { loadReflections } from '../ducks/reflectionSlice';
 const Reflections = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-        fetch('http://localhost:8888/.netlify/functions/fetch-reflections')
-        .then(res => res.json())
-        .then(data => dispatch(loadReflections(data.data.reflections)));
+        dispatch(loadReflections());
     }, [dispatch]);
 
     const reflections = useSelector((state) => state.reflections);
