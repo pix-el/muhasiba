@@ -1,8 +1,6 @@
 const { handleRequest } = require('./utils/handleRequest');
-const { makeHasuraRequest } = require('./utils/makeHasuraRequest');
 
-const handler = handleRequest(
-  makeHasuraRequest({
+const handler = () => handleRequest({
     query: `query fetch_all_reflections_for_user($userId: String!) {
       reflections(where: {user_id: {_eq: $userId}}) {
         created_at
@@ -17,7 +15,6 @@ const handler = handleRequest(
     variables: {
       "userId": "1"
     }
-  })
-);
+});
 
 module.exports = { handler }

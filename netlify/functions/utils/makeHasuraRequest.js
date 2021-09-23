@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-exports.makeHasuraRequest = ({ query, variables }) => function () {
+exports.makeHasuraRequest = ({ query, variables }) => {
   return fetch(process.env.HASURA_API_URL, {
     method: 'POST',
     headers: { 

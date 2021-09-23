@@ -1,7 +1,9 @@
-exports.handleRequest = (processingFunc) => async function () {
-  try {
-    const response = await processingFunc();
+const { makeHasuraRequest } = require('./makeHasuraRequest');
 
+exports.handleRequest = async function ({ query, variables }) {
+  try {
+    const response = await makeHasuraRequest({ query, variables });
+    
     if (!response.ok) {
       return { 
         statusCode: response.status, 
@@ -9,7 +11,7 @@ exports.handleRequest = (processingFunc) => async function () {
       }
     }
     const { data } = await response.json();
-
+    
     return {
         statusCode: 200,
         body: JSON.stringify({ data }),
