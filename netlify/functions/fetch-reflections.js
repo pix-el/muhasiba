@@ -13,7 +13,7 @@ const handler = () => handleRequest({
     }
     `,
     variables: {
-      "userId": "1"
+      userId: "1"
     }
 });
 

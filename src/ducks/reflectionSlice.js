@@ -17,36 +17,37 @@ export const addReflection = createAsyncThunk('addReflection', async ({ title, t
       })
     .then(res => res.json());
     return response;
-  })
+});
+
+export const editReflection = createAsyncThunk('editReflection', async ({ id, keywords, title, text }) => {
+    const response = await fetch('http://localhost:8888/.netlify/functions/edit-reflection', {
+        method: 'POST',
+        body: JSON.stringify({
+            id,
+            keywords: "general",
+            text,
+            title,
+          }),
+      })
+    .then(res => res.json());
+    return response;
+});
+
+export const deleteReflection = createAsyncThunk('deleteReflection', async ({ id }) => {
+    const response = await fetch('http://localhost:8888/.netlify/functions/delete-reflection', {
+        method: 'POST',
+        body: JSON.stringify({
+            id,
+          }),
+      })
+    .then(res => res.json());
+    return response;
+});
 
 export const reflectionSlice = createSlice({
     name: 'reflections',
     initialState: [],
     reducers: {
-        addReflection: (state, action) => {
-            const id = `uniq${state.length}`;
-            state.push({
-                ...action.payload,
-                id,
-            });
-            localStorage.setItem('reflections', JSON.stringify(state));
-        },
-        editReflection: (state, action) => {
-            state = state.map(post => {
-                if (post.id === action.payload.id) {
-                    return action.payload;
-                }
-                return post;
-            });
-            localStorage.setItem('reflections', JSON.stringify(state));
-            return state;
-        },
-        deleteReflection: (state, action) => {
-            const { id } = action.payload;
-            state = state.filter(post => post.id !== id);
-            localStorage.setItem('reflections', JSON.stringify(state));
-            return state;
-        }
     },
     extraReducers: (builder) => {
         builder
@@ -62,9 +63,24 @@ export const reflectionSlice = createSlice({
             });
             localStorage.setItem('reflections', JSON.stringify(state));
         })
+        .addCase(editReflection.fulfilled, (state, action) => {
+            const reflection = action.payload?.data?.update_reflections_by_pk;
+            state = state.map(post => {
+                if (post.id === reflection.id) {
+                    return reflection;
+                }
+                return post;
+            });
+            localStorage.setItem('reflections', JSON.stringify(state));
+            return state;
+        })
+        .addCase(deleteReflection.fulfilled, (state, action) => {
+            const { id } = action.payload?.data?.delete_reflections_by_pk;
+            state = state.filter(post => post.id !== id);
+            localStorage.setItem('reflections', JSON.stringify(state));
+            return state;
+        })
     }
 });
-
-export const { editReflection, deleteReflection } = reflectionSlice.actions;
 
 export default reflectionSlice.reducer;
