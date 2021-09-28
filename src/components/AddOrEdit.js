@@ -1,4 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
 import { addReflection, editReflection } from '../ducks/reflectionSlice';
@@ -79,24 +82,31 @@ const AddOrEdit = () => {
     }
     return (
         <div style={containerStyles}>
-            <div style={innerContainerStyles}>
-                <label htmlFor="title">Title</label>
-                <input
-                    id="title"
-                    onChange={onTitleChange}
-                    placeholder="Enter title here..."
-                    value={title}
+            <Box
+                component="form"
+                sx={{
+                    '& > :not(style)': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+            >
+                <TextField
+                   id="title"
+                   label="Title"
+                   onChange={onTitleChange}
+                   placeholder="Enter title here..."
+                   value={title}
                 />
-                <label htmlFor="text">Text</label>
-                <textarea
-                    id="text"
-                    style={styles}
-                    onChange={onTextChange}
-                    placeholder="Enter your reflections here..."
-                    value={text}
+                <TextField
+                   id="text"
+                   label="Text"
+                   onChange={onTextChange}
+                   placeholder="Enter your reflections here..."
+                   value={text}
+                   multiline
                 />
-                <button type="button" onClick={onSubmit}>Submit</button>
-            </div>
+                <Button variant="contained" onClick={onSubmit} size="large">Submit</Button>
+            </Box>
         </div>
     );
 }
