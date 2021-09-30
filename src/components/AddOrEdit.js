@@ -6,29 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
 import { addReflection, editReflection } from '../ducks/reflectionSlice';
 
-const styles = {
-    width: "600px",
-    height: "120px",
-    border: "3px solid #cccccc",
-    padding: "5px",
-    fontFamily: "Helvetica Neue"
-}
-
-const containerStyles = {
-    display: "flex",
-    justifyContent: "center", /* center horizontally */
-    alignItems: "center", /* center vertically */
-    margin: "auto",
-}
-
-const innerContainerStyles = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center", /* center horizontally */
-    alignItems: "flex-start", /* center vertically */
-    margin: "auto",
-}
-
 function useMode() {
     const ADD = 'add';
     const EDIT = 'edit';
@@ -81,7 +58,7 @@ const AddOrEdit = () => {
         history.push('/');
     }
     return (
-        <div style={containerStyles}>
+        <div>
             <Box
                 component="form"
                 sx={{
