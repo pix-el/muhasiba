@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,14 +60,7 @@ const AddOrEdit = () => {
     }
     return (
         <div>
-            <Box
-                component="form"
-                sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
+             <Stack spacing={1}>
                 <TextField
                    id="title"
                    label="Title"
@@ -83,7 +77,7 @@ const AddOrEdit = () => {
                    multiline
                 />
                 <Button variant="contained" onClick={onSubmit} size="large">Submit</Button>
-            </Box>
+            </Stack>
         </div>
     );
 }

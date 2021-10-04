@@ -13,14 +13,12 @@ const Reflections = () => {
 
     const reflections = useSelector((state) => state.reflections);
     const items = reflections.length > 0 ? reflections.map(({ id, title, text }) => (
-        <Paper>
             <Reflection
                 key={id}
                 id={id}
                 title={title}
                 text={text}
             />
-        </Paper>
     )) : <Paper>You have no posts</Paper>;
     return (
     <Stack spacing={2}>

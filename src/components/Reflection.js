@@ -14,7 +14,7 @@ const Reflection = ({ id, title, text }) => {
     const handleDelete = () => dispatch(deleteReflection({ id }));
     const handleEdit = () => { history.push(`/edit/${id}`) };
     return (
-        <Card id={id} sx={{ maxWidth: 400 }}>
+        <Card id={id}>
         <CardContent>
             <Typography component="h5">{title}</Typography>
             <Typography variant="body2">{text}</Typography>
