@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const loadReflections = createAsyncThunk('loadReflections', async () => {
-    const response = await fetch('http://localhost:8888/.netlify/functions/fetch-reflections')
+    const response = await fetch('/api/fetch-reflections')
     .then(res => res.json());
     return response;
 });
 
 export const addReflection = createAsyncThunk('addReflection', async ({ title, text }) => {
-    const response = await fetch('http://localhost:8888/.netlify/functions/save-reflection', {
+    const response = await fetch('/api/save-reflection', {
         method: 'POST',
         body: JSON.stringify({
             keywords: "general",
@@ -20,7 +20,7 @@ export const addReflection = createAsyncThunk('addReflection', async ({ title, t
 });
 
 export const editReflection = createAsyncThunk('editReflection', async ({ id, keywords, title, text }) => {
-    const response = await fetch('http://localhost:8888/.netlify/functions/edit-reflection', {
+    const response = await fetch('/api/edit-reflection', {
         method: 'POST',
         body: JSON.stringify({
             id,
@@ -34,7 +34,7 @@ export const editReflection = createAsyncThunk('editReflection', async ({ id, ke
 });
 
 export const deleteReflection = createAsyncThunk('deleteReflection', async ({ id }) => {
-    const response = await fetch('http://localhost:8888/.netlify/functions/delete-reflection', {
+    const response = await fetch('/api/delete-reflection', {
         method: 'POST',
         body: JSON.stringify({
             id,

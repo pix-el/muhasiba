@@ -15,9 +15,6 @@ exports.handleRequest = async function ({ query, variables }) {
     return {
         statusCode: 200,
         body: JSON.stringify({ data }),
-        headers: {
-            "access-control-allow-origin": "http://localhost:3000"
-        }
       }
   } catch (error) {
     // output to netlify function log

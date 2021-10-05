@@ -1,0 +1,5 @@
+[[redirects]]
+from = "/api/*"
+to = "http://localhost:8888/.netlify/functions/:splat"
+status = 200
+force = false
