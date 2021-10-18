@@ -3,8 +3,8 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import LoginButton from './LoginButton';
 
 export default function ButtonAppBar() {
   return (
@@ -22,7 +22,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Muhasiba
           </Typography>
-          <Button color="inherit">Login</Button>
+          <LoginButton />
         </Toolbar>
       </AppBar>
     </Box>
