@@ -1,6 +1,8 @@
 import {
   BrowserRouter as Router,
 } from 'react-router-dom';
+import store from '../ducks/store';
+import { Provider as ReduxProvider } from 'react-redux';
 import { Auth0Provider } from "@auth0/auth0-react";
 import Container from '@mui/material/Container';
 import AppBar from './AppBar';
@@ -14,7 +16,7 @@ function App() {
       clientId=""
       redirectUri={window.location.origin}
   >
-    <div className="App">
+    <ReduxProvider store={store}>
       <Router>
         <AppBar />
         <Nav />
@@ -22,7 +24,7 @@ function App() {
           <ChildRoutes />
         </Container>
       </Router>
-    </div>
+    </ReduxProvider>
     </Auth0Provider>
   );
 }
